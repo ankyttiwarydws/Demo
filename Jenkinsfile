@@ -33,7 +33,5 @@ pipeline {
     }
 
   }
-  environment {
-    DOCKER_TAG = getDockerTag()
-  }
+  
 }

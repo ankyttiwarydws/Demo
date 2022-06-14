@@ -36,10 +36,10 @@ pipeline {
   environment {
     DOCKER_TAG = getDockerTag()
   }
-  post {
-    failure {
-      mail(to: 'team@example.com', subject: 'Failed Pipeline', body: 'Something is wrong')
-    }
 
-  }
 }
+ def getDockerTag(){
+    def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
+    return tag
+     
+ }

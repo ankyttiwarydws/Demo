@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh "docker build . -t ankittiwaridws/demo:${DOCKER_TAG} "
+        sh "docker build . -t ankittiwaridws/demo:0.1 "
       }
     }
 
@@ -26,7 +26,7 @@ pipeline {
       steps {
         withCredentials(bindings: [string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
           sh "docker login -u ankittiwaridws -p ${dockerhub}"
-          sh "docker push ankittiwaridws/demo:${DOCKER_TAG}"
+          sh "docker push ankittiwaridws/demo:0.1"
         }
 
       }

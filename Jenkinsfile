@@ -28,6 +28,6 @@ pipeline {
         }
   tools {
     maven 'maven'
-    jdk 'jdk’
+    jdk 'jdk'
   }
 }

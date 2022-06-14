@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git') {
       steps {
-        git(url: 'https://github.com/ankyttiwarydws/Demo.git', branch: 'main', credentialsId: 'git')
+        git(url: 'https://github.com/ankyttiwarydws/Demo.git', branch: 'main')
       }
     }
 

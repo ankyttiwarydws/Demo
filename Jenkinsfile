@@ -1,8 +1,6 @@
 pipeline {
   agent any
   stages {
-    
-
     stage('Build') {
       steps {
         withMaven(globalMavenSettingsConfig: 'null', jdk: 'jdk', maven: 'maven', mavenSettingsConfig: 'null') {

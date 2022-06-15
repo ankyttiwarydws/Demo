@@ -10,7 +10,7 @@ pipeline {
         sh 'mvn clean package'
       }
     }
-    stage([$class: 'DockerBuilderPublisher']){
+    stage('DockerBuilderPublisher'){
             steps{
                 sh "docker build . -t ankittiwaridws/demo:1 "
             }

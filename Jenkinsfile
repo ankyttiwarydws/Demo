@@ -12,7 +12,6 @@ pipeline {
     }
     stage('DockerBuilderPublisher'){
             steps{
-                agent docker
                 sh 'docker build -t ankittiwaridws/demo:1 .'
             }
         }

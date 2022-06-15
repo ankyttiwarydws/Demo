@@ -1,35 +1,16 @@
 pipeline {
   agent any
-  environment {
-imagename = "ank/dem"
-dockerImage = ''
+  stages {
+    stage('') {
+      steps {
+        git(url: 'https://github.com/ankyttiwarydws/nodejs-demo', branch: 'main', credentialsId: 'git')
+      }
+    }
+
   }
   tools {
     maven 'maven'
-    jdk    'jdk'
+    jdk 'jdk'
     dockerTool 'docker'
   }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'mvn clean package'
-      }
-    }
-    stage('DockerBuilderPublisher'){
-      steps{
-       script {
-         dockerImage = docker.build imagename
-        }   
-        }
-    }
-    stage('DockerHub Push'){
-            steps{
-                withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                    sh 'docker login -u ankittiwaridws -p ${dockerhub}'
-                    sh 'docker push ankittiwaridws/demo:1'
-                }
-            }
-        }
-  
-}   
 }

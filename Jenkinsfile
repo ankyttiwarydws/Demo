@@ -15,10 +15,12 @@ dockerImage = ''
       }
     }
     stage('DockerBuilderPublisher'){
+      steps{
        script {
          dockerImage = docker.build imagename
         }   
         }
+    }
     stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {

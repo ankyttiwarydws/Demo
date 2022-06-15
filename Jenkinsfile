@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  environment {
+imagename = "ank/dem"
+dockerImage = ''
+  }
   tools {
     maven 'maven'
     jdk    'jdk'
@@ -11,9 +15,9 @@ pipeline {
       }
     }
     stage('DockerBuilderPublisher'){
-            steps{
-                sh 'docker build -t ankittiwaridws/demo:1 .'
-            }
+       script {
+         dockerImage = docker.build imagename
+        }   
         }
     stage('DockerHub Push'){
             steps{

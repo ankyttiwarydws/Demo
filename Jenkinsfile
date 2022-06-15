@@ -12,7 +12,8 @@ pipeline {
     }
     stage('DockerBuilderPublisher'){
             steps{
-                sh 'docker build . -t ankittiwaridws/demo:1'
+                agent any
+                sh 'docker build -t ankittiwaridws/demo:1 .'
             }
         }
     stage('DockerHub Push'){

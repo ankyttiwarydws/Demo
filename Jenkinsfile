@@ -1,16 +1,11 @@
-pipeline {
-  agent any
-  stages {
-    stage('') {
-      steps {
-        git(url: 'https://github.com/ankyttiwarydws/nodejs-demo', branch: 'main', credentialsId: 'git')
-      }
-    }
-
+node {
+  stage('SCM') {
+    checkout scm
   }
-  tools {
-    maven 'maven'
-    jdk 'jdk'
-    dockerTool 'docker'
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=demo"
+    }
   }
 }
